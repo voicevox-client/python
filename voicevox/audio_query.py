@@ -19,10 +19,10 @@ class AudioQuery:
 
     async def synthesis(
         self, *, enable_interrogative_upspeak: bool = True,
-        core_version: Optional[str] = None
+        core_version: Optional[str] = None, speaker: Optional[int] = None
     ) -> bytes:
         params = {
-            "speaker": speaker,
+            "speaker": speaker or self.speaker,
             "enable_interrogative_upspeak": enable_interrogative_upspeak
         }
         if core_version is not None:
