@@ -23,6 +23,6 @@ setup(
     long_description_content_type="text/markdown",
     author="tuna2134",
     license="MIT",
-    packages=["voicevox"],
+    packages=["voicevox", "voicevox.types"],
     install_requires=requirements
 )
