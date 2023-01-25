@@ -7,6 +7,7 @@ from httpx import AsyncClient
 from .errors import NotfoundError, HttpException
 from .types import AudioQueryType
 from .audio_query import AudioQuery
+from .http import HttpClient
 
 
 class Client:
@@ -14,11 +15,10 @@ class Client:
     base_url: str
 
     def __init__(self, base_url: str = "http://localhost:50021"):
-        self.base_url = base_url
-        self.session = AsyncClient(base_url=base_url)
+        self.http = HttpClient(base_url=base_url)
 
     async def close(self) -> None:
-        await self.session.aclose()
+        await self.http.close()
 
     async def request(self, method: str, path: str, **kwargs) -> dict:
         response = await self.session.request(method, path, **kwargs)
