@@ -26,20 +26,10 @@ class HttpClient:
         else:
             raise HttpException(response.json())
 
-    async def synthesis(
-        self, speaker: int, audio_query: AudioQueryType, *,
-        enable_interrogative_upspeak: bool = True,
-        core_version: Optional[str] = None
-    ) -> bytes:
-        parameters = {
-            "speaker": speaker,
-            "enable_interrogative_upspeak": enable_interrogative_upspeak
-        }
-        if core_version is not None:
-            parameters["core_version"] = core_version
+    async def synthesis(self, params: dict, payload: dict) -> bytes:
         return await self.request(
-            "POST", "/synthesis", params=parameters,
-            json=audio_query
+            "POST", "/synthesis", params=params,
+            json=payload
         )
 
     async def create_audio_query(self, params: dict) -> AudioQueryType:
