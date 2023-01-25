@@ -42,15 +42,12 @@ class HttpClient:
             json=audio_query
         )
 
-    async def create_audio_query(
-        self, text: int, speaker: int, *, core_version: Optional[str] = None
-    ) -> AudioQueryType:
-        params = {
-            "text": text,
-            "speaker": speaker
-        }
-        if core_version is not None:
-            params["core_version"] = core_version
+    async def create_audio_query(self, params: dict) -> AudioQueryType:
         return await self.request(
             "POST", "/audio_query", params=params
+        )
+
+    async def create_audio_query_from_preset(self, params: dict) -> AudioQueryType:
+        return await self.request(
+            "POST", "/audio_query_from_preset", params=params
         )
