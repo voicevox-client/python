@@ -32,22 +32,6 @@ class Client:
         else:
             raise HttpException(response.json())
 
-    async def synthesis(
-        self, speaker: int, audio_query: AudioQueryType, *,
-        enable_interrogative_upspeak: bool = True,
-        core_version: Optional[str] = None
-    ) -> bytes:
-        parameters = {
-            "speaker": speaker,
-            "enable_interrogative_upspeak": enable_interrogative_upspeak
-        }
-        if core_version is not None:
-            parameters["core_version"] = core_version
-        return await self.request(
-            "POST", "/synthesis", params=parameters,
-            json=audio_query
-        )
-
     async def create_audio_query(
         self, text: int, speaker: int, *, core_version: Optional[str] = None
     ) -> AudioQuery:
@@ -60,7 +44,7 @@ class Client:
         audio_query = await self.request(
             "POST", "/audio_query", params=params
         )
-        return AudioQuery(self, audio_query, speaker)
+        return AudioQuery(self.http, audio_query, speaker)
 
     async def create_audio_query_from_preset(
         self, text: str, preset_id: int, *, core_version: Optional[str] = None
