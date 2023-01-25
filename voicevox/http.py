@@ -24,3 +24,19 @@ class HttpClient:
             raise NotfoundError(response.json()["detail"])
         else:
             raise HttpException(response.json())
+
+    async def synthesis(
+        self, speaker: int, audio_query: AudioQueryType, *,
+        enable_interrogative_upspeak: bool = True,
+        core_version: Optional[str] = None
+    ) -> bytes:
+        parameters = {
+            "speaker": speaker,
+            "enable_interrogative_upspeak": enable_interrogative_upspeak
+        }
+        if core_version is not None:
+            parameters["core_version"] = core_version
+        return await self.request(
+            "POST", "/synthesis", params=parameters,
+            json=audio_query
+        )
