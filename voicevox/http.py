@@ -8,7 +8,7 @@ from .types import AudioQueryType
 
 class HttpClient:
 
-    def __init__(self, base_url: str = "http://localhost:50021"):
+    def __init__(self, base_url: str):
         self.session = AsyncClient(base_url=base_url)
 
     async def close(self) -> None:
