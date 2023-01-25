@@ -11,5 +11,5 @@ async def main():
         f.write(await audio_query.synthesis())
 
 
-if __init__ == "__main__":
+if __name__ == "__main__":
     asyncio.run(main())

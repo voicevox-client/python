@@ -1,5 +1,6 @@
 # voicevox - audio_query
 
+from __future__ import annotations
 from typing import TYPE_CHECKING, Optional
 
 from .types import AudioQueryType
@@ -9,9 +10,6 @@ if TYPE_CHECKING:
 
 
 class AudioQuery:
-    client: Client
-    data: AudioQueryType
-    speaker: int
 
     def __init__(
         self, client: Client, audio_query: AudioQueryType,
