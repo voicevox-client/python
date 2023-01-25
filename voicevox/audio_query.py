@@ -21,8 +21,10 @@ class AudioQuery:
         self, *, enable_interrogative_upspeak: bool = True,
         core_version: Optional[str] = None
     ) -> bytes:
-        return await self.http.synthesis(
-            self.speaker, self.data,
-            enable_interrogative_upspeak=enable_interrogative_upspeak,
-            core_version=core_version
-        )
+        params = {
+            "speaker": speaker,
+            "enable_interrogative_upspeak": enable_interrogative_upspeak
+        }
+        if core_version is not None:
+            params["core_version"] = core_version
+        return await self.http.synthesis(params, self.data)
