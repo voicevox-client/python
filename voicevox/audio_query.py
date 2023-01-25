@@ -22,7 +22,7 @@ class AudioQuery:
         self.speaker = speaker
 
     async def synthesis(
-        self, enable_interrogative_upspeak: bool = True,
+        self, *, enable_interrogative_upspeak: bool = True,
         core_version: Optional[str] = None
     ) -> bytes:
         return await self.client.synthesis(
