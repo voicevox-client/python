@@ -4,9 +4,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Optional
 
 from .types import AudioQueryType
-
-if TYPE_CHECKING:
-    from .client import Client
+from .http import HttpClient
 
 
 class AudioQuery:
@@ -15,7 +13,7 @@ class AudioQuery:
         self, client: Client, audio_query: AudioQueryType,
         speaker: int
     ):
-        self.client = client
+        self.http = http
         self.data = audio_query
         self.speaker = speaker
 
@@ -23,7 +21,7 @@ class AudioQuery:
         self, *, enable_interrogative_upspeak: bool = True,
         core_version: Optional[str] = None
     ) -> bytes:
-        return await self.client.synthesis(
+        return await self.http.synthesis(
             self.speaker, self.data,
             enable_interrogative_upspeak=enable_interrogative_upspeak,
             core_version=core_version
