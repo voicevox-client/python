@@ -34,6 +34,14 @@ class HttpClient:
             json=payload
         )
 
+    async def multi_synthesis(
+        self, params: dict, payload: List[dict]
+    ) -> bytes:
+        return await self.request(
+            "POST", "/multi_synthesis", params=params,
+            json=payload
+        )
+
     async def create_audio_query(self, params: dict) -> AudioQueryType:
         return await self.request(
             "POST", "/audio_query", params=params

@@ -18,4 +18,3 @@ class SpeakerType(TypedDict):
     speaker_uuid: str
     styles: List[StyleType]
     version: str
-    

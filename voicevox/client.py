@@ -86,7 +86,7 @@ class Client:
         """Fetch engine version
 
         This can fetch voicevox engine version.
-        
+
         Returns
         -------
         str
@@ -120,3 +120,20 @@ class Client:
         """
         speakers = await self.http.get_speakers(core_version)
         return [Speaker(speaker) for speaker in speakers]
+
+    async def multi_synthesis(
+        self, audio_queries: List[AudioQuery], speaker: int,
+        *, core_version: Optional[str] = None
+    ) -> bytes:
+        """"""
+        params = {
+            "speaker": speaker
+        }
+        if core_version is not None:
+            params["core_version"] = core_version
+        return await self.http.multi_synthesis(
+            params, [
+                audio_query.to_dict()
+                for audio_query in audio_queries
+            ]
+        )
