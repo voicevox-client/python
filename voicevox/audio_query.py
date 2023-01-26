@@ -13,8 +13,8 @@ class Mora:
         self.consonant: str = payload["consonant"]
         self.consonant_length: int = payload["consonant_length"]
         self.vowel: int = payload["vowel"]
-        self.vowel_length: int = paylaod["vowel_length"]
-        self.pitch: int = paylaod["pitch"]
+        self.vowel_length: int = payload["vowel_length"]
+        self.pitch: int = payload["pitch"]
 
 
 class AccentPhrase:
