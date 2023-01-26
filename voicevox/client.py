@@ -30,7 +30,7 @@ class Client:
     async def close(self) -> None:
         """Close http client
 
-        You must run this function!
+        You must run this function, when you finish process.
         """
         await self.http.close()
 
