@@ -1,10 +1,8 @@
 # voicevox - Client
 
-from typing import Any, Optional, List
+from typing import Optional, List
 from typing_extensions import Self
 
-from .errors import NotfoundError, HttpException
-from .types import AudioQueryType
 from .audio_query import AudioQuery
 from .http import HttpClient
 
