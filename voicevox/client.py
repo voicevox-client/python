@@ -83,13 +83,40 @@ class Client:
         return AudioQuery(self, audio_query, preset_id)
 
     async def fetch_engine_version(self) -> str:
+        """Fetch engine version
+
+        This can fetch voicevox engine version.
+        
+        Returns
+        -------
+        str
+            Engine version
+        """
         return await self.http.get_version()
 
     async def fetch_core_versions(self) -> List[str]:
+        """Fetch core versions
+
+        This can fetch voicevox core versions.
+
+        Returns
+        -------
+        List[str]
+            Core versions
+        """
         return await self.http.get_core_versions()
 
     async def fetch_speakers(
         self, core_version: Optional[str] = None
     ) -> List[Speaker]:
+        """Fetch speakers
+
+        This can fetch voicevox speakers.
+
+        Returns
+        -------
+        List[Speaker]
+            Speakers
+        """
         speakers = await self.http.get_speakers(core_version)
         return [Speaker(speaker) for speaker in speakers]
