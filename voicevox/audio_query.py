@@ -71,14 +71,17 @@ class AccentPhrase:
         self.is_interrogative: bool = payload["is_interrogative"]
 
     def to_dict(self) -> AccentPhraseType:
-        return {
+        payload = {
             "moras": [mora.to_dict() for mora in self.moras],
             "accent": self.accent,
-            "pause_mora": (
-                self.pause_mora.to_dict() if self.pause_mora is not None else None
-            ),
+            "pause_mora": self.pause_mora.to_dict() if self.pause_mora is not None else None
             "is_interrogative": self.is_interrogative
         }
+        if self.pause_mora is not None:
+            payload["pause_mora"] = self.pause_mora.to_dict()
+        else:
+            payload["pause_mora"] = None
+        return payload
 
 
 class AudioQuery:
