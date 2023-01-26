@@ -1,7 +1,7 @@
 # voicevox - audio_query
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING, Optional, List
 
 from .types import AudioQueryType, AccentPhraseType, MoraType
 from .http import HttpClient
@@ -15,6 +15,16 @@ class Mora:
         self.vowel: int = payload["vowel"]
         self.vowel_length: int = payload["vowel_length"]
         self.pitch: int = payload["pitch"]
+
+    def to_dict(self) -> dict:
+        return {
+            "text": self.text,
+            "consonant": self.consonant,
+            "consonant_length": self.consonant_length,
+            "vowel": self.vowel,
+            "vowel_length": self.vowel_length,
+            "pitch": self.pitch
+        }
 
 
 class AccentPhrase:
@@ -67,7 +77,9 @@ class AudioQuery:
         self.http = http
         self.__data = payload
 
-        self.accent_phrases = payload["accent_phrases"]
+        self.accent_phrases: List[AccentPhrase] = [
+            AccentPhrase(accent_phrase) for accent_phrase in payload["accent_phrases"]
+        ]
         self.speed_scale: int = payload["speedScale"]
         self.pitch_scale: int = payload["pitchScale"]
         self.intonation_scale: int = payload["intonationScale"]
@@ -85,7 +97,7 @@ class AudioQuery:
 
     def to_dict(self) -> AudioQueryType:
         return {
-            "accent_phrases": self.accent_phrases,
+            "accent_phrases": [accent_phrase.to_dict() for accent_phrase in self.accent_phrases],
             "speedScale": self.speed_scale,
             "pitchScale": self.pitch_scale,
             "intonationScale": self.intonation_scale,
