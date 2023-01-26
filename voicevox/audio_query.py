@@ -62,7 +62,7 @@ class AccentPhrase:
     def __init__(self, payload: AccentPhraseType):
         self.moras: list = [Mora(mora) for mora in payload["moras"]]
         self.accent: int = payload["accent"]
-        if payload.get("pause_mora"]) is not None:
+        if payload.get("pause_mora") is not None:
             self.pause_mora: Optional[Mora] = Mora(payload.get("pause_mora"))
         else:
             self.pause_mora: Optional[Mora] = None
