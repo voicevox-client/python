@@ -2,8 +2,6 @@
 
 from typing import Any, Optional
 
-from httpx import AsyncClient
-
 from .errors import NotfoundError, HttpException
 from .types import AudioQueryType
 from .audio_query import AudioQuery
@@ -11,9 +9,20 @@ from .http import HttpClient
 
 
 class Client:
-    session: AsyncClient
+    """Voicevox client class
+    
+    Wrap voicevox engine api.
+    
+    Parameters
+    ----------
     base_url: str
-
+        Voicevox engine endpoint uri.
+    
+    Attributes
+    ----------
+    http: HttpClient
+        Http client attribute.
+    """
     def __init__(self, base_url: str = "http://localhost:50021"):
         self.http = HttpClient(base_url=base_url)
 
