@@ -3,9 +3,13 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, Optional
 
-from .types import AudioQueryType
+from .types import AudioQueryType, AccentPhraseType
 from .http import HttpClient
 
+
+class AccentPhrase:
+    def __init__(self, payload: AccentPhraseType):
+        self.moras: list = payload["moras"]
 
 class AudioQuery:
     """Audio query
