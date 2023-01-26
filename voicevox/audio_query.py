@@ -63,7 +63,7 @@ class AccentPhrase:
         self.moras: list = [Mora(mora) for mora in payload["moras"]]
         self.accent: int = payload["accent"]
         if payload.get("pause_mora"]) is not None:
-            self.pause_mora: Optional[Mora] = Mora(payload.get("pause_mora"]))
+            self.pause_mora: Optional[Mora] = Mora(payload.get("pause_mora"))
         else:
             self.pause_mora: Optional[Mora] = None
         self.is_interrogative: bool = payload["is_interrogative"]
