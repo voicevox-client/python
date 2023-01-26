@@ -18,6 +18,7 @@ class HttpClient:
         response = await self.session.request(method, path, **kwargs)
         if response.status_code == 200:
             if response.headers["content-type"] == "application/json":
+                print(response.json())
                 return response.json()
             else:
                 return response.content
