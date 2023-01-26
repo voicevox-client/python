@@ -11,25 +11,26 @@ from .http import HttpClient
 
 class Client:
     """Voicevox client class
-    
+
     Wrap voicevox engine api.
-    
+
     Parameters
     ----------
     base_url: str
         Voicevox engine endpoint uri.
-    
+
     Attributes
     ----------
     http: HttpClient
         Http client attribute.
     """
+
     def __init__(self, base_url: str = "http://localhost:50021"):
         self.http = HttpClient(base_url=base_url)
 
     async def close(self) -> None:
         """Close http client
-        
+
         You must run this function!
         """
         await self.http.close()
@@ -44,9 +45,9 @@ class Client:
         self, text: int, speaker: int, *, core_version: Optional[str] = None
     ) -> AudioQuery:
         """Create audio query
-        
+
         If you want do tts, you must run first.
-        
+
         Parameters
         ----------
         text: str
@@ -55,7 +56,7 @@ class Client:
             Speaker id
         core_version: str
             Core version
-        
+
         Returns
         -------
         AudioQuery

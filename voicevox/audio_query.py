@@ -9,7 +9,7 @@ from .http import HttpClient
 
 class Mora:
     """Mora class
-    
+
     Attributes
     ----------
     text: str
@@ -25,6 +25,7 @@ class Mora:
     pitch: int
         ピッチ
     """
+
     def __init__(self, payload: MoraType):
         self.text: str = payload["text"]
         self.consonant: str = payload["consonant"]
@@ -47,7 +48,7 @@ class Mora:
 class AccentPhrase:
     """
     Accent phrase class
-    
+
     Attributes
     ----------
     moras: List[Mora]
@@ -59,6 +60,7 @@ class AccentPhrase:
     is_interrogative: bool
         疑問系かどうか
     """
+
     def __init__(self, payload: AccentPhraseType):
         self.moras: list = [Mora(mora) for mora in payload["moras"]]
         self.accent: int = payload["accent"]
@@ -79,9 +81,9 @@ class AccentPhrase:
 
 class AudioQuery:
     """Audio query
-    
+
     Audio query to do synthesis.
-    
+
     Attributes
     ----------
     accent_phrases: dict
@@ -105,6 +107,7 @@ class AudioQuery:
     kana: str
         [読み取り専用]AquesTalkライクな読み仮名。音声合成クエリとしては無視される
     """
+
     def __init__(
         self, http: HttpClient, payload: AudioQueryType,
         speaker: int
