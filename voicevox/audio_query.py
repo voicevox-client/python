@@ -120,7 +120,8 @@ class AudioQuery:
         self.__data = payload
 
         self.accent_phrases: List[AccentPhrase] = [
-            AccentPhrase(accent_phrase) for accent_phrase in payload["accent_phrases"]
+            AccentPhrase(accent_phrase)
+            for accent_phrase in payload["accent_phrases"]
         ]
         self.speed_scale: int = payload["speedScale"]
         self.pitch_scale: int = payload["pitchScale"]
