@@ -6,7 +6,7 @@ on:
       - main
     
 jobs:
-  deploy:
+  build:
     name: Deploy document
     runs-on: ubuntu-latest
     steps:
@@ -21,11 +21,20 @@ jobs:
           pip3 install pdoc3
           pdoc --html --config show_source_code=False --force voicevox
       
-      - name: Deploy documentation
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: html/voicevox
-          commit_message: Deploy documentation
-          user_name: github-actions[bot]
-          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+          path: ./html/voicevox
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
