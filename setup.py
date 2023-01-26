@@ -25,4 +25,10 @@ setup(
     license="MIT",
     packages=["voicevox", "voicevox.types"],
     install_requires=requirements
+    extras_require={
+        "tests": [
+            "pytest",
+            "pytest-asyncio"
+        ]
+    }
 )
