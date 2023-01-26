@@ -17,6 +17,15 @@ class Client:
     def __init__(self, base_url: str = "http://localhost:50021"):
         self.http = HttpClient(base_url=base_url)
 
+    async def close(self) -> None:
+        await self.http.close()
+
+    async def __aenter__(self):
+        return self
+
+    async def __aexit__(self, *args) -> None:
+        await self.close()
+
     async def create_audio_query(
         self, text: int, speaker: int, *, core_version: Optional[str] = None
     ) -> AudioQuery:
