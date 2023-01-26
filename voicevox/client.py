@@ -5,6 +5,7 @@ from typing_extensions import Self
 
 from .audio_query import AudioQuery
 from .http import HttpClient
+from .speakers import Speaker
 
 
 class Client:
@@ -86,3 +87,7 @@ class Client:
 
     async def fetch_core_versions(self) -> List[str]:
         return await self.http.get_core_versions()
+
+    async def fetch_speakers(self) -> List[Speaker]:
+        speakers = await self.http.get_speakers()
+        return [Speaker(speaker) for speaker in speakers]

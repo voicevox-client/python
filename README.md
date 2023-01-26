@@ -1,9 +1,9 @@
-# voicevox
+# voicevox-client
 Unoffical API wrapper that you can use voicevox easy!
 
 ## Install
 ```sh
-pip install voicevox
+pip install voicevox-client
 ```
 
 All that!

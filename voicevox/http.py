@@ -5,7 +5,7 @@ from typing import List
 from httpx import AsyncClient
 
 from .errors import NotfoundError, HttpException
-from .types import AudioQueryType
+from .types import AudioQueryType, SpeakerType
 
 
 class HttpClient:
@@ -53,3 +53,6 @@ class HttpClient:
 
     async def get_core_versions(self) -> List[str]:
         return await self.request("GET", "/core_versions")
+
+    async def get_speakers(self) -> List[SpeakerType]:
+        return await self.request("GET", "/speakers")

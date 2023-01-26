@@ -16,7 +16,7 @@ with open("requirements.txt", "r") as f:
 
 
 setup(
-    name="voicevox",
+    name="voicevox-client",
     description="Voicevox engine unoffical wrapper",
     version=get_version(),
     long_description=long_description,

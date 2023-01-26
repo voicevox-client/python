@@ -1,3 +1,5 @@
+# voicevox - types/audio_query
+
 from typing import TypedDict, List
 
 
