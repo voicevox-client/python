@@ -4,8 +4,9 @@
 
 from .client import Client
 from .audio_query import AudioQuery
-from .errors import HttpException, NotfoundError
 from .speakers import Speaker, Style, SupportedFeature
+
+from .errors import HttpException, NotfoundError
 
 
 __all__ = (
