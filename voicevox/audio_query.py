@@ -1,7 +1,7 @@
 # voicevox - audio_query
 
 from __future__ import annotations
-from typing import TYPE_CHECKING, Optional, List
+from typing import Optional, List
 
 from .types import AudioQueryType, AccentPhraseType, MoraType
 from .http import HttpClient
@@ -74,7 +74,9 @@ class AccentPhrase:
         return {
             "moras": [mora.to_dict() for mora in self.moras],
             "accent": self.accent,
-            "pause_mora": self.pause_mora.to_dict() if self.pause_mora is not None else None,
+            "pause_mora": (
+                self.pause_mora.to_dict() if self.pause_mora is not None else None
+            ),
             "is_interrogative": self.is_interrogative
         }
 
