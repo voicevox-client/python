@@ -125,7 +125,18 @@ class Client:
         self, audio_queries: List[AudioQuery], speaker: int,
         *, core_version: Optional[str] = None
     ) -> bytes:
-        """"""
+        """Multi synthe
+
+        This function is like AudioQuery.synthesis, but it can synthesis multi!
+        
+        Parameters
+        ----------
+        audio_queries: List[AudioQuery]
+            Array of audio query
+        speaker: int
+            speaker id
+        core_version: Optional[str]
+            voicevox core version"""
         params = {
             "speaker": speaker
         }
