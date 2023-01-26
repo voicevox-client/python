@@ -8,13 +8,38 @@ from .http import HttpClient
 
 
 class AudioQuery:
-
+    """Audio query
+    
+    Audio query to do synthesis.
+    
+    Attributes
+    ----------
+    accent_phrases: dict
+    speed_scale: int
+        Speech speed
+    pitch_scale: int
+        Speech pitch
+    intonation_scale: int
+        Speech intonation
+    volume_scale: int
+        Speech volume
+    pre_phoneme_length: int
+        音声の前の無音時間
+    post_phoneme_length: int
+        音声の後の無音時間
+    output_sampling_rate: int
+        音声データの出力サンプリングレート
+    output_stereo: bool
+        音声データをステレオ出力するか否か
+    kana: str
+        [読み取り専用]AquesTalkライクな読み仮名。音声合成クエリとしては無視される
+    """
     def __init__(
         self, http: HttpClient, payload: AudioQueryType,
         speaker: int
     ):
         self.http = http
-        self.data = payload
+        self.__data = payload
 
         self.accent_phrases = payload["accent_phrases"]
         self.speed_scale: int = payload["speedScale"]
@@ -25,9 +50,12 @@ class AudioQuery:
         self.post_phoneme_length: int = payload["postPhonemeLength"]
         self.output_sampling_rate: int = payload["outputSamplingRate"]
         self.output_stereo: bool = payload["outputStereo"]
-        self.kana: str = payload["kana"]
 
         self.speaker = speaker
+
+    @property
+    def kana(self) -> str:
+        return self.__data["kana"]
 
     def to_dict(self) -> AudioQueryType:
         return {
