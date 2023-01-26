@@ -39,7 +39,9 @@ class HttpClient:
             "POST", "/audio_query", params=params
         )
 
-    async def create_audio_query_from_preset(self, params: dict) -> AudioQueryType:
+    async def create_audio_query_from_preset(
+        self, params: dict
+    ) -> AudioQueryType:
         return await self.request(
             "POST", "/audio_query_from_preset", params=params
         )
