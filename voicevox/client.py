@@ -1,6 +1,7 @@
 # voicevox - Client
 
 from typing import Any, Optional
+from typing_extensions import Self
 
 from .errors import NotfoundError, HttpException
 from .types import AudioQueryType
@@ -29,7 +30,7 @@ class Client:
     async def close(self) -> None:
         await self.http.close()
 
-    async def __aenter__(self):
+    async def __aenter__(self) -> Self:
         return self
 
     async def __aexit__(self, *args) -> None:
