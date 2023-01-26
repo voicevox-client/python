@@ -3,12 +3,12 @@ import asyncio
 
 
 async def main():
-    client = Client()
-    audio_query = await client.create_audio_query(
-        "こんにちは！", speaker=1
-    )
-    with open("voice.wav", "wb") as f:
-        f.write(await audio_query.synthesis())
+    async with Client() as client:
+        audio_query = await client.create_audio_query(
+            "こんにちは！", speaker=1
+        )
+        with open("voice.wav", "wb") as f:
+            f.write(await audio_query.synthesis())
 
 
 if __name__ == "__main__":
