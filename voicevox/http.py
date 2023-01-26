@@ -49,5 +49,5 @@ class HttpClient:
             "GET", "/version"
         )
 
-    async def get_core_version(self) -> List[str]:
+    async def get_core_versions(self) -> List[str]:
         return await self.request("GET", "/core_versions")
