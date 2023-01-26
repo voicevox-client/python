@@ -8,6 +8,23 @@ from .http import HttpClient
 
 
 class Mora:
+    """Mora class
+    
+    Attributes
+    ----------
+    text: str
+        文字
+    consonant: str
+        子音の音素
+    consonant_length: int
+        子音の音長
+    vowel: str
+        母音の音素
+    vowel_length: int
+        母音の音長
+    pitch: int
+        ピッチ
+    """
     def __init__(self, payload: MoraType):
         self.text: str = payload["text"]
         self.consonant: str = payload["consonant"]
@@ -28,6 +45,20 @@ class Mora:
 
 
 class AccentPhrase:
+    """
+    Accent phrase class
+    
+    Attributes
+    ----------
+    moras: List[Mora]
+        モーラのリスト
+    accent: int
+        アクセント箇所
+    pause_mora: Mora
+        後ろに無音を付けるかどうか
+    is_interrogative: bool
+        疑問系かどうか
+    """
     def __init__(self, payload: AccentPhraseType):
         self.moras: list = [Mora(mora) for mora in payload["moras"]]
         self.accent: int = payload["accent"]
@@ -51,6 +82,7 @@ class AudioQuery:
     Attributes
     ----------
     accent_phrases: dict
+        アクセント句のリスト
     speed_scale: int
         Speech speed
     pitch_scale: int
