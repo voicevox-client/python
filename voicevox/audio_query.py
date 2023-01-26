@@ -140,7 +140,10 @@ class AudioQuery:
 
     def to_dict(self) -> AudioQueryType:
         return {
-            "accent_phrases": [accent_phrase.to_dict() for accent_phrase in self.accent_phrases],
+            "accent_phrases": [
+                accent_phrase.to_dict()
+                for accent_phrase in self.accent_phrases
+            ],
             "speedScale": self.speed_scale,
             "pitchScale": self.pitch_scale,
             "intonationScale": self.intonation_scale,
