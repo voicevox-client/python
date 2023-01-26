@@ -3,13 +3,35 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, Optional
 
-from .types import AudioQueryType, AccentPhraseType
+from .types import AudioQueryType, AccentPhraseType, MoraType
 from .http import HttpClient
+
+
+class Mora:
+    def __init__(self, payload: MoraType):
+        self.text: str = payload["text"]
+        self.consonant: str = payload["consonant"]
+        self.consonant_length: int = payload["consonant_length"]
+        self.vowel: int = payload["vowel"]
+        self.vowel_length: int = paylaod["vowel_length"]
+        self.pitch: int = paylaod["pitch"]
 
 
 class AccentPhrase:
     def __init__(self, payload: AccentPhraseType):
-        self.moras: list = payload["moras"]
+        self.moras: list = [Mora(mora) for mora in payload["moras"]]
+        self.accent: int = payload["accent"]
+        self.pause_mora: Mora = Mora(payload["pause_mora"])
+        self.is_interrogative: bool = payload["is_interrogative"]
+
+    def to_dict(self) -> AccentPhraseType:
+        return {
+            "moras": [mora.to_dict() for mora in self.moras],
+            "accent": self.accent,
+            "pause_mora": self.pause_mora.to_dict(),
+            "is_interrogative": self.is_interrogative
+        }
+
 
 class AudioQuery:
     """Audio query
