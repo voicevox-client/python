@@ -1,6 +1,6 @@
 # voicevox - Client
 
-from typing import Any, Optional
+from typing import Any, Optional, List
 from typing_extensions import Self
 
 from .errors import NotfoundError, HttpException
@@ -84,3 +84,6 @@ class Client:
 
     async def fetch_engine_version(self) -> str:
         return await self.http.get_version()
+
+    async def fetch_core_versions(self) -> List[str]:
+        return await self.http.get_core_versions()
