@@ -17,8 +17,7 @@ jobs:
           python-version: '3.10'
       - name: Build documentation
         run: |
-          pip3 install -U .
-          pip3 install pdoc3
+          pip3 install -U .[docs]
           pdoc --html --config show_source_code=False --force voicevox
       
       - name: Upload artifact
