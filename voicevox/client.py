@@ -88,6 +88,8 @@ class Client:
     async def fetch_core_versions(self) -> List[str]:
         return await self.http.get_core_versions()
 
-    async def fetch_speakers(self) -> List[Speaker]:
-        speakers = await self.http.get_speakers()
+    async def fetch_speakers(
+        self, core_version: Optional[str] = None
+    ) -> List[Speaker]:
+        speakers = await self.http.get_speakers(core_version)
         return [Speaker(speaker) for speaker in speakers]

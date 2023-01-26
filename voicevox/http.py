@@ -1,6 +1,6 @@
 # voicevox - http
 
-from typing import List
+from typing import List, Optional
 
 from httpx import AsyncClient
 
@@ -54,5 +54,10 @@ class HttpClient:
     async def get_core_versions(self) -> List[str]:
         return await self.request("GET", "/core_versions")
 
-    async def get_speakers(self) -> List[SpeakerType]:
-        return await self.request("GET", "/speakers")
+    async def get_speakers(
+        self, core_version: Optional[str]
+    ) -> List[SpeakerType]:
+        params = {}
+        if core_version is not None:
+            params["core_version"] = core_version
+        return await self.request("GET", "/speakers", params=params)
