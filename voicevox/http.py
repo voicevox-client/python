@@ -41,3 +41,8 @@ class HttpClient:
         return await self.request(
             "POST", "/audio_query_from_preset", params=params
         )
+
+    async def get_version(self) -> str:
+        return await self.request(
+            "GET", "/version"
+        )
