@@ -10,7 +10,7 @@ from .http import HttpClient
 class AudioQuery:
 
     def __init__(
-        self, client: HttpClient, audio_query: AudioQueryType,
+        self, http: HttpClient, audio_query: AudioQueryType,
         speaker: int
     ):
         self.http = http
