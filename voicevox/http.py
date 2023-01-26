@@ -1,5 +1,7 @@
 # voicevox - http
 
+from typing import List
+
 from httpx import AsyncClient
 
 from .errors import NotfoundError, HttpException
@@ -46,3 +48,6 @@ class HttpClient:
         return await self.request(
             "GET", "/version"
         )
+
+    async def get_core_version(self) -> List[str]:
+        return await self.request("GET", "/core_versions")
