@@ -18,6 +18,11 @@ with open("requirements.txt", "r") as f:
 setup(
     name="voicevox-client",
     description="Voicevox engine unoffical wrapper",
+    url="https://github.com/tuna2134/voicevox-client",
+    project_urls={
+        "Documentation": "https://voicevox-client.tuna2134.jp",
+        "Source": "https://github.com/tuna2134/voicevox-client",
+    },
     version=get_version(),
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -29,6 +34,9 @@ setup(
         "tests": [
             "pytest",
             "pytest-asyncio"
+        ],
+        "docs": [
+            "pdoc3"
         ]
     }
 )
