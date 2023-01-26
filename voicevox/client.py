@@ -28,6 +28,10 @@ class Client:
         self.http = HttpClient(base_url=base_url)
 
     async def close(self) -> None:
+        """Close http client
+        
+        You must run this function!
+        """
         await self.http.close()
 
     async def __aenter__(self) -> Self:
@@ -39,6 +43,24 @@ class Client:
     async def create_audio_query(
         self, text: int, speaker: int, *, core_version: Optional[str] = None
     ) -> AudioQuery:
+        """Create audio query
+        
+        If you want do tts, you must run first.
+        
+        Parameters
+        ----------
+        text: str
+            Text message
+        speaker: int
+            Speaker id
+        core_version: str
+            Core version
+        
+        Returns
+        -------
+        AudioQuery
+            Audio query, that run synthesis.
+        """
         params = {
             "text": text,
             "speaker": speaker
