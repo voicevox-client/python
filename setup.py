@@ -29,6 +29,9 @@ setup(
     author="tuna2134",
     license="MIT",
     packages=["voicevox", "voicevox.types"],
+    package_data={
+        "voicevox": ["py.typed"]
+    },
     install_requires=requirements,
     extras_require={
         "tests": [
