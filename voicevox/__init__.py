@@ -1,4 +1,6 @@
-# voicevox - Init file
+"""
+.. include:: ../README.md
+"""
 
 from .client import Client
 from .audio_query import AudioQuery

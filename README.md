@@ -1,6 +1,11 @@
 # voicevox-client
 Unoffical API wrapper that you can use voicevox easy!
 
+## Requirements
+`Voicevox engine` only!
+
+Well if you want install voicevox engine, please read [this](https://github.com/VOICEVOX/voicevox_engine/blob/master/README.md).
+
 ## Install
 ```sh
 pip install voicevox-client
