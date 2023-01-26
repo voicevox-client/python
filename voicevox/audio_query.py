@@ -54,7 +54,7 @@ class AccentPhrase:
         モーラのリスト
     accent: int
         アクセント箇所
-    pause_mora: Mora
+    pause_mora: Optional[Mora]
         後ろに無音を付けるかどうか
     is_interrogative: bool
         疑問系かどうか
@@ -62,7 +62,10 @@ class AccentPhrase:
     def __init__(self, payload: AccentPhraseType):
         self.moras: list = [Mora(mora) for mora in payload["moras"]]
         self.accent: int = payload["accent"]
-        self.pause_mora: Mora = Mora(payload["pause_mora"])
+        if payload.get("pause_mora"]) is not None:
+            self.pause_mora: Optional[Mora] = Mora(payload.get("pause_mora"]))
+        else:
+            self.pause_mora: Optional[Mora] = None
         self.is_interrogative: bool = payload["is_interrogative"]
 
     def to_dict(self) -> AccentPhraseType:
