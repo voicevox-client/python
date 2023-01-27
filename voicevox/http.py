@@ -18,8 +18,8 @@ class HttpClient:
 
     async def request(self, method: str, path: str, **kwargs) -> dict:
         response = await self.session.request(method, path, **kwargs)
-        if response.status_code == 200:
-            if response.headers["content-type"] == "application/json":
+        if response.status_code == 200 or response.status_code == 204:
+            if response.headers.get("content-type")== "application/json":
                 return response.json()
             else:
                 return response.content
@@ -69,3 +69,6 @@ class HttpClient:
         if core_version is not None:
             params["core_version"] = core_version
         return await self.request("GET", "/speakers", params=params)
+
+    async def initialize_speaker(self, params: dict) -> None:
+        await self.request("POST", "/initialize_speaker", params=params)

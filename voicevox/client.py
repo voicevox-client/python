@@ -148,3 +148,16 @@ class Client:
                 for audio_query in audio_queries
             ]
         )
+
+    async def initialize_speaker(
+        self, speaker: int, *, skip_reinit: bool=False,
+        core_version: Optional[str] = None
+    ) -> None:
+        params = {
+            "speaker": speaker,
+            "skip_reinit": skip_reinit
+        }
+        if core_version is not None:
+            params["core_version"] = core_version
+        await self.http.initialize_speaker(params)
+
