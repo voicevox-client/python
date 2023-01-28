@@ -149,7 +149,7 @@ class Client:
             ]
         )
 
-    async def initialize_speaker(
+    async def init_speaker(
         self, speaker: int, *, skip_reinit: bool = False,
         core_version: Optional[str] = None
     ) -> None:
@@ -175,3 +175,26 @@ class Client:
         if core_version is not None:
             params["core_version"] = core_version
         await self.http.initialize_speaker(params)
+
+    async def check_inited_speaker(self, speaker: int, *, core_version: Optional[str] = None):
+        """Check initialized speaker
+
+        Returns whether the speaker with the specified speaker_id is initialized or not.
+
+        Parameters
+        ----------
+        speaker: int
+            speaker id
+        core_version: Optional[str]
+            core version
+
+        Returns
+        -------
+        bool
+            If initialized speaker, it return `True`."""
+        params = {
+            "speaker": speaker
+        }
+        if core_version is not None:
+            params["core_version"] = core_version
+        return await self.http.is_initialized_speaker(params)
