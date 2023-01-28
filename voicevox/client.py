@@ -156,14 +156,16 @@ class Client:
         """Initilize speaker
 
         Initializes the speaker with the specified speaker_id.
-        Other APIs can be used without executing this function, but it may take some time when it is executed for the first time.
+        Other APIs can be used without executing this function,
+        but it may take some time when it is executed for the first time.
 
         Parameters
         ----------
         speaker: int
             speaker id
         skip_reinit: bool
-            Whether to skip reinitialization of speakers who have already been initialized
+            Whether to skip reinitialization of speakers
+            who have already been initialized
         core_version: Optional[str]
             core version"""
         params = {
