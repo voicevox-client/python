@@ -128,7 +128,7 @@ class Client:
         """Multi synthe
 
         This function is like AudioQuery.synthesis, but it can synthesis multi!
-        
+
         Parameters
         ----------
         audio_queries: List[AudioQuery]
@@ -150,9 +150,22 @@ class Client:
         )
 
     async def initialize_speaker(
-        self, speaker: int, *, skip_reinit: bool=False,
+        self, speaker: int, *, skip_reinit: bool = False,
         core_version: Optional[str] = None
     ) -> None:
+        """Initilize speaker
+
+        Initializes the speaker with the specified speaker_id.
+        Other APIs can be used without executing this function, but it may take some time when it is executed for the first time.
+
+        Parameters
+        ----------
+        speaker: int
+            speaker id
+        skip_reinit: bool
+            Whether to skip reinitialization of speakers who have already been initialized
+        core_version: Optional[str]
+            core version"""
         params = {
             "speaker": speaker,
             "skip_reinit": skip_reinit
@@ -160,4 +173,3 @@ class Client:
         if core_version is not None:
             params["core_version"] = core_version
         await self.http.initialize_speaker(params)
-

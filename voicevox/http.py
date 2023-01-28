@@ -19,7 +19,7 @@ class HttpClient:
     async def request(self, method: str, path: str, **kwargs) -> dict:
         response = await self.session.request(method, path, **kwargs)
         if response.status_code == 200 or response.status_code == 204:
-            if response.headers.get("content-type")== "application/json":
+            if response.headers.get("content-type") == "application/json":
                 return response.json()
             else:
                 return response.content
