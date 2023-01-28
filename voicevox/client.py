@@ -136,7 +136,12 @@ class Client:
         speaker: int
             speaker id
         core_version: Optional[str]
-            voicevox core version"""
+            voicevox core version
+
+        Returns
+        -------
+        bytes
+            Return zip file"""
         params = {
             "speaker": speaker
         }
