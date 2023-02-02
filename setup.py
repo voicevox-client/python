@@ -7,7 +7,7 @@ def get_version():
         return re.search(r'__version__ = "([^"]+)"', f.read()).group(1)
 
 
-with open("README.md", "r") as f:
+with open("README.md", "r",  encoding='utf-8') as f:
     long_description = f.read()
 
 
