@@ -1,4 +1,4 @@
-# voicevox-client
+# voicevox client for python.
 Unoffical API wrapper that you can use voicevox easy!
 
 ## Requirements
