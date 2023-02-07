@@ -18,7 +18,7 @@ with open("requirements.txt", "r") as f:
 setup(
     name="voicevox-client",
     description="Voicevox engine unoffical wrapper",
-    url="https://github.com/tuna2134/voicevox-client",
+    url="https://github.com/voicevox-client/python",
     project_urls={
         "Documentation": "https://voicevox-client.tuna2134.jp",
         "Source": "https://github.com/tuna2134/voicevox-client",
