@@ -113,8 +113,7 @@ class AudioQuery:
     """
 
     def __init__(
-        self, http: HttpClient, payload: AudioQueryType,
-        speaker: int
+        self, http: HttpClient, payload: AudioQueryType
     ):
         self.http = http
         self.__data = payload
@@ -131,8 +130,6 @@ class AudioQuery:
         self.post_phoneme_length: int = payload["postPhonemeLength"]
         self.output_sampling_rate: int = payload["outputSamplingRate"]
         self.output_stereo: bool = payload["outputStereo"]
-
-        self.speaker = speaker
 
     @property
     def kana(self) -> str:
@@ -157,10 +154,10 @@ class AudioQuery:
 
     async def synthesis(
         self, *, enable_interrogative_upspeak: bool = True,
-        core_version: Optional[str] = None, speaker: Optional[int] = None
+        speaker: int, core_version: Optional[str] = None
     ) -> bytes:
         params = {
-            "speaker": speaker or self.speaker,
+            "speaker": speaker,
             "enable_interrogative_upspeak": enable_interrogative_upspeak
         }
         if core_version is not None:
