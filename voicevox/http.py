@@ -10,8 +10,8 @@ from .types import AudioQueryType, SpeakerType
 
 class HttpClient:
 
-    def __init__(self, base_url: str):
-        self.session = AsyncClient(base_url=base_url)
+    def __init__(self, base_url: str, timeout: Optional[int] = None):
+        self.session = AsyncClient(base_url=base_url, timeout=timeout)
 
     async def close(self) -> None:
         await self.session.aclose()
