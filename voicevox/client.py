@@ -24,8 +24,8 @@ class Client:
         Http client attribute.
     """
 
-    def __init__(self, base_url: str = "http://localhost:50021"):
-        self.http = HttpClient(base_url=base_url)
+    def __init__(self, base_url: str = "http://localhost:50021", timeout: Optional[int] = None):
+        self.http = HttpClient(base_url=base_url, timeout=timeout)
 
     async def close(self) -> None:
         """Close http client
