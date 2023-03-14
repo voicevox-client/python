@@ -1,5 +1,5 @@
 """
-.. include:: ../README.md
+.. include:: ../README.rst
 """
 
 from .client import Client

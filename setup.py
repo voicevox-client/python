@@ -7,7 +7,7 @@ def get_version():
         return re.search(r'__version__ = "([^"]+)"', f.read()).group(1)
 
 
-with open("README.md", "r",  encoding='utf-8') as f:
+with open("README.rst", "r",  encoding='utf-8') as f:
     long_description = f.read()
 
 
@@ -25,7 +25,7 @@ setup(
     },
     version=get_version(),
     long_description=long_description,
-    long_description_content_type="text/markdown",
+    long_description_content_type="text/x-rst",
     author="tuna2134",
     license="MIT",
     packages=["voicevox", "voicevox.types"],
