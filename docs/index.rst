@@ -10,6 +10,8 @@ Welcome to voicevox-client's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   voicevox
+   voicevox.types
 
 
 Indices and tables
