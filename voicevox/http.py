@@ -2,19 +2,26 @@
 
 from typing import List, Optional
 
+import logging
+
 from httpx import AsyncClient
 
 from .errors import NotfoundError, HttpException
 from .types import AudioQueryType, SpeakerType
 
 
+logger = logging.getLogger(__name__)
+
+
 class HttpClient:
 
     def __init__(self, base_url: str, timeout: Optional[int] = None):
         self.session = AsyncClient(base_url=base_url, timeout=timeout)
+        logger.debug("Start session.")
 
     async def close(self) -> None:
         await self.session.aclose()
+        logger.debug("Stop session")
 
     async def request(self, method: str, path: str, **kwargs) -> dict:
         response = await self.session.request(method, path, **kwargs)
@@ -24,8 +31,10 @@ class HttpClient:
             else:
                 return response.content
         elif response.status_code == 404:
+            logger.debug(response.content)
             raise NotfoundError(response.json()["detail"])
         else:
+            logger.error(response.content)
             raise HttpException(response.json())
 
     async def synthesis(self, params: dict, payload: dict) -> bytes:
