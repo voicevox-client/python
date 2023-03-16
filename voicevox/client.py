@@ -3,9 +3,14 @@
 from typing import Optional, List
 from typing_extensions import Self
 
+import logging
+
 from .audio_query import AudioQuery
 from .http import HttpClient
 from .speakers import Speaker
+
+
+logging.getLogger(__name__)
 
 
 class Client:
@@ -34,6 +39,7 @@ class Client:
 
         You must run this function, when you finish process.
         """
+        logging.info("Close http client")
         await self.http.close()
 
     async def __aenter__(self) -> Self:
