@@ -23,6 +23,9 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
+**Library version's**
+- Version
+
 **voicevox-engine's version**
 - Version
 - Core version
