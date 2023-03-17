@@ -9,4 +9,4 @@ async def test_basic():
         audio_query = await client.create_audio_query(
             "こんにちは！", speaker=1
         )
-        await audio_query.synthesis()
+        await audio_query.synthesis(speaker=1)
