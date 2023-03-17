@@ -1,0 +1,23 @@
+name: Test voicevox-client
+
+on:
+  push:
+    branches:
+      - main
+    
+jobs:
+  tests:
+    name: Test voicevox-client
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.10'
+      - name: Install depend
+        run: |
+          pip3 install -U .[tests] docker
+      - name: Run test
+        run: |
+          pytest tests/test-with-docker.py
