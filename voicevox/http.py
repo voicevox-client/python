@@ -20,21 +20,20 @@ class HttpClient:
         logger.debug("Start session.")
 
     async def close(self) -> None:
-        await self.session.aclose()
         logger.debug("Stop session")
+        await self.session.aclose()
 
     async def request(self, method: str, path: str, **kwargs) -> dict:
         response = await self.session.request(method, path, **kwargs)
+        logger.debug(response.content)
         if response.status_code == 200 or response.status_code == 204:
             if response.headers.get("content-type") == "application/json":
                 return response.json()
             else:
                 return response.content
         elif response.status_code == 404:
-            logger.debug(response.content)
             raise NotfoundError(response.json()["detail"])
         else:
-            logger.error(response.content)
             raise HttpException(response.json())
 
     async def synthesis(self, params: dict, payload: dict) -> bytes:
