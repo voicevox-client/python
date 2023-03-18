@@ -1,3 +1,20 @@
+# voicevox client for python.
+Unoffical API wrapper that you can use voicevox easy!
+
+## Requirements
+`Voicevox engine` only!
+
+Well if you want install voicevox engine, please read [this](https://github.com/VOICEVOX/voicevox_engine/blob/master/README.md).
+
+## Install
+```sh
+pip install voicevox-client
+```
+
+All that!
+
+## Example
+```python
 from voicevox import Client
 import asyncio
 
@@ -13,3 +30,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+```

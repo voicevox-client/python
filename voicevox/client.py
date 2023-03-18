@@ -3,9 +3,14 @@
 from typing import Optional, List
 from typing_extensions import Self
 
+import logging
+
 from .audio_query import AudioQuery
 from .http import HttpClient
 from .speakers import Speaker
+
+
+logger = logging.getLogger(__name__)
 
 
 class Client:
@@ -34,6 +39,7 @@ class Client:
 
         You must run this function, when you finish process.
         """
+        logger.info("Close http client")
         await self.http.close()
 
     async def __aenter__(self) -> Self:
@@ -70,7 +76,7 @@ class Client:
         if core_version is not None:
             params["core_version"] = core_version
         audio_query = await self.http.create_audio_query(params)
-        return AudioQuery(self.http, audio_query, speaker)
+        return AudioQuery(self.http, audio_query)
 
     async def create_audio_query_from_preset(
         self, text: str, preset_id: int, *, core_version: Optional[str] = None
