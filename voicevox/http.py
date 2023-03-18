@@ -2,22 +2,31 @@
 
 from typing import List, Optional
 
+import logging
+
 from httpx import AsyncClient
 
 from .errors import NotfoundError, HttpException
 from .types import AudioQueryType, SpeakerType
 
 
+logger = logging.getLogger(__name__)
+
+
 class HttpClient:
 
     def __init__(self, base_url: str, timeout: Optional[int] = None):
         self.session = AsyncClient(base_url=base_url, timeout=timeout)
+        logger.debug("Start session.")
 
     async def close(self) -> None:
+        logger.debug("Stop session")
         await self.session.aclose()
 
     async def request(self, method: str, path: str, **kwargs) -> dict:
+        logger.debug(f"Request: {method} Path: {path} kwargs: {kwargs}")
         response = await self.session.request(method, path, **kwargs)
+        logger.debug("StatusCode: {0.status_code} Response: {0.content}".format(response))
         if response.status_code == 200 or response.status_code == 204:
             if response.headers.get("content-type") == "application/json":
                 return response.json()
