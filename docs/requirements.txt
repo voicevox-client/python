@@ -1,2 +1,3 @@
 furo
 sphinx
+git+https://github.com/voicevox-client/python.git
