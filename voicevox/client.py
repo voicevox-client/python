@@ -8,7 +8,7 @@ import logging
 from .audio_query import AudioQuery
 from .http import HttpClient
 from .speakers import Speaker
-
+from .speaker_info import SpeakerInfo
 
 logger = logging.getLogger(__name__)
 
@@ -128,6 +128,27 @@ class Client:
         """
         speakers = await self.http.get_speakers(core_version)
         return [Speaker(speaker) for speaker in speakers]
+    
+    async def fetch_speaker_info(
+        self, speaker_uuid: str, core_version: Optional[str] = None
+    ) -> SpeakerInfo:
+        """Fetch speaker's info by given uuid.
+
+        Returns
+        -------
+        SpeakerInfo
+            policy: str
+            portrait: str
+            style_infos: [
+            {
+                id: int
+                icon: str
+                portrait: str
+                voice_samples: List[str]
+            }...
+            ]
+        """
+        return SpeakerInfo(await self.http.get_speaker_info(speaker_uuid, core_version)) 
 
     async def multi_synthesis(
         self, audio_queries: List[AudioQuery], speaker: int,
