@@ -134,6 +134,8 @@ class Client:
     ) -> SpeakerInfo:
         """Fetch speaker's info by given uuid.
 
+        This can fetch voice samples for the targeted speaker as well as its icon and portrait images.
+
         Returns
         -------
         SpeakerInfo
