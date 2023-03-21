@@ -26,7 +26,8 @@ class HttpClient:
     async def request(self, method: str, path: str, **kwargs) -> dict:
         logger.debug(f"Request: {method} Path: {path} kwargs: {kwargs}")
         response = await self.session.request(method, path, **kwargs)
-        logger.debug("StatusCode: {0.status_code} Response: {0.content}".format(response))
+        logger.debug(
+            "StatusCode: {0.status_code} Response: {0.content}".format(response))
         if response.status_code == 200 or response.status_code == 204:
             if response.headers.get("content-type") == "application/json":
                 return response.json()
