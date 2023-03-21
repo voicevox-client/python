@@ -1,6 +1,6 @@
 # voicevox - types/audio_query
 
-from typing import TypedDict, List
+from typing import List, TypedDict
 
 
 class MoraType(TypedDict):

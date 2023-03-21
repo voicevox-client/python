@@ -1,6 +1,6 @@
 # voicevox - types/speakers
 
-from typing import TypedDict, List
+from typing import List, TypedDict
 
 
 class StyleType(TypedDict):

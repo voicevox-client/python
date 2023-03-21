@@ -1,14 +1,12 @@
 # voicevox - http
 
-from typing import List, Optional
-
 import logging
+from typing import List, Optional
 
 from httpx import AsyncClient
 
-from .errors import NotfoundError, HttpException
+from .errors import HttpException, NotfoundError
 from .types import AudioQueryType, SpeakerType
-
 
 logger = logging.getLogger(__name__)
 

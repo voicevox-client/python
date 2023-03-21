@@ -1,5 +1,6 @@
-from voicevox import Client
 import asyncio
+
+from voicevox import Client
 
 
 async def main():

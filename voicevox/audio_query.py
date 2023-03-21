@@ -1,10 +1,11 @@
 # voicevox - audio_query
 
 from __future__ import annotations
-from typing import Optional, List
 
-from .types import AudioQueryType, AccentPhraseType, MoraType
+from typing import List, Optional
+
 from .http import HttpClient
+from .types import AccentPhraseType, AudioQueryType, MoraType
 
 
 class Mora:

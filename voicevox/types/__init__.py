@@ -1,8 +1,7 @@
 # voicevox - types
 
-from .audio_query import AudioQueryType, AccentPhraseType, MoraType
+from .audio_query import AccentPhraseType, AudioQueryType, MoraType
 from .speakers import SpeakerType, StyleType, SupportedFeatureType
-
 
 __all__ = (
     "AudioQueryType",

@@ -1,14 +1,13 @@
 # voicevox - Client
 
-from typing import Optional, List
-from typing_extensions import Self
-
 import logging
+from typing import List, Optional
+
+from typing_extensions import Self
 
 from .audio_query import AudioQuery
 from .http import HttpClient
 from .speakers import Speaker
-
 
 logger = logging.getLogger(__name__)
 
