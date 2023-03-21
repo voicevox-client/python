@@ -39,6 +39,7 @@ class StyleInfo:
     def voice_samples(self) -> list[str]:
         return self.__data["voice_samples"]
     
+
 class SpeakerInfo:
     """Return speaker info
 
