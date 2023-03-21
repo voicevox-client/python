@@ -27,7 +27,9 @@ class HttpClient:
         logger.debug(f"Request: {method} Path: {path} kwargs: {kwargs}")
         response = await self.session.request(method, path, **kwargs)
         logger.debug(
-            "StatusCode: {0.status_code} Response: {0.content}".format(response))
+            "StatusCode: {0.status_code} Response: {0.content}"
+            .format(response)
+        )
         if response.status_code == 200 or response.status_code == 204:
             if response.headers.get("content-type") == "application/json":
                 return response.json()
@@ -84,4 +86,5 @@ class HttpClient:
         await self.request("POST", "/initialize_speaker", params=params)
 
     async def is_initialized_speaker(self, params: dict) -> bool:
-        return await self.request("GET", "/is_initialized_speaker", params=params)
+        return await self.request(
+            "GET", "/is_initialized_speaker", params=params)
