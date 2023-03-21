@@ -16,8 +16,10 @@ jobs:
       with:
         python-version: '3.x'
     - name: Install dependencies
-      run: pip install --upgrade black pip -r requirements.txt
+      run: pip install --upgrade isort black pip -r requirements.txt
     - name: Pyright
       uses: jakebailey/pyright-action@v1
     - name: Lint
       run: black --check voicevox
+    - name: isort
+      run: isort . -c -v
