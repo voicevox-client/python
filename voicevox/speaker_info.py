@@ -4,6 +4,7 @@ from typing import List
 
 from .types.speaker_info import SpeakerInfoType, StyleInfoType
 
+
 class StyleInfo:
     """Return style info
 
