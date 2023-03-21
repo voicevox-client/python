@@ -28,10 +28,14 @@ class Client:
     http: HttpClient
         Http client attribute.
     timeout: Optional[int]
-        You can customize timeout. If you use cpu mode, I recommend to use this.
+        You can customize timeout.
+        If you use cpu mode, I recommend to use this.
     """
 
-    def __init__(self, base_url: str = "http://localhost:50021", timeout: Optional[int] = None):
+    def __init__(
+        self, base_url: str = "http://localhost:50021",
+        timeout: Optional[int] = None
+    ):
         self.http = HttpClient(base_url=base_url, timeout=timeout)
 
     async def close(self) -> None:
