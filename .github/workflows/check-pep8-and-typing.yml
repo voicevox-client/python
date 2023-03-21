@@ -1,0 +1,21 @@
+name: Check pep8
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: pip install --upgrade flake8 pip -r requirements.txt
+    - name: Flake8
+      run: flake8
