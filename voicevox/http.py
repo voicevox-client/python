@@ -85,6 +85,3 @@ class HttpClient:
 
     async def is_initialized_speaker(self, params: dict) -> bool:
         return await self.request("GET", "/is_initialized_speaker", params=params)
-
-
-
