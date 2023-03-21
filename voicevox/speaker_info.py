@@ -16,7 +16,7 @@ class StyleInfo:
     portrait: str
         base64 encoded portrait image
     voice_samples: list[str]
-        raw voice_data ???
+        base64 encoded voice sample
     """
 
     def __init__(self, payload: StyleInfoType):
