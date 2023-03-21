@@ -134,21 +134,19 @@ class Client:
     ) -> SpeakerInfo:
         """Fetch speaker's info by given uuid.
 
-        This can fetch voice samples for the targeted speaker as well as its icon and portrait images.
+        This function retrieves additional information about a specific speaker, including its voice samples, icon, and portrait images.
+
+        Parameters
+        ----------
+        speaker_uuid : str
+            speaker's uuid
+        core_version : Optional[str]
+            voicevox core version
 
         Returns
         -------
         SpeakerInfo
-            policy: str
-            portrait: str
-            style_infos: [
-            {
-                id: int
-                icon: str
-                portrait: str
-                voice_samples: List[str]
-            }...
-            ]
+            Contains additional information of the speaker.
         """
         return SpeakerInfo(await self.http.get_speaker_info(speaker_uuid, core_version)) 
 

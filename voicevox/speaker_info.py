@@ -25,12 +25,15 @@ class StyleInfo:
     @property
     def id(self) -> int:
         return self.__data["id"]
+    
     @property
     def icon(self) -> str:
         return self.__data["icon"]
+    
     @property
     def portrait(self) -> str:
         return self.__data["portrait"]
+    
     @property
     def voice_samples(self) -> list[str]:
         return self.__data["voice_samples"]
