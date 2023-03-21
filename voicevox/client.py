@@ -194,7 +194,8 @@ class Client:
         await self.http.initialize_speaker(params)
 
     async def check_inited_speaker(
-        self, speaker: int, *, core_version: Optional[str] = None):
+        self, speaker: int, *, core_version: Optional[str] = None
+    ):
         """Check initialized speaker
 
         Returns whether the speaker with the specified speaker_id is initialized or not.
