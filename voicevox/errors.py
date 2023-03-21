@@ -1,5 +1,6 @@
 # voicevox - errors
 
+
 class HttpException(Exception):
     pass
 

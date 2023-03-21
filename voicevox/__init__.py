@@ -12,7 +12,10 @@ from .errors import HttpException, NotfoundError
 __all__ = (
     "Client",
     "AudioQuery",
-    "HttpException", "NotfoundError",
-    "Speaker", "Style", "SupportedFeature"
+    "HttpException",
+    "NotfoundError",
+    "Speaker",
+    "Style",
+    "SupportedFeature",
 )
 __version__ = "0.2.0a"
