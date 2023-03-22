@@ -6,8 +6,10 @@ import logging
 
 from httpx import AsyncClient
 
+
 from .errors import NotfoundError, HttpException
 from .types import AudioQueryType, SpeakerType
+from .types.speaker_info import SpeakerInfoType 
 
 
 logger = logging.getLogger(__name__)
@@ -79,6 +81,16 @@ class HttpClient:
         if core_version is not None:
             params["core_version"] = core_version
         return await self.request("GET", "/speakers", params=params)
+
+    async def get_speaker_info(
+        self, speaker_uuid: str, core_version: Optional[str]
+    ) -> SpeakerInfoType:
+        params = {
+            "speaker_uuid": speaker_uuid 
+        }
+        if core_version is not None:
+            params["core_version"] = core_version
+        return await self.request("GET", "/speaker_info", params=params)
 
     async def initialize_speaker(self, params: dict) -> None:
         await self.request("POST", "/initialize_speaker", params=params)
