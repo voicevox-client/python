@@ -9,7 +9,7 @@ class MoraType(TypedDict):
     consonant_length: int
     vowel: str
     vowel_length: int
-    pitch: int
+    pitch: float
 
 
 class AccentPhraseType(TypedDict):
@@ -21,11 +21,12 @@ class AccentPhraseType(TypedDict):
 
 class AudioQueryType(TypedDict):
     accent_phrases: List[AccentPhraseType]
-    speedScale: int
-    pitchScale: int
-    volumeScale: int
-    prePhonemeLength: int
-    postPhonemeLength: int
+    speedScale: float
+    pitchScale: float
+    intonationScale: float
+    volumeScale: float
+    prePhonemeLength: float
+    postPhonemeLength: float
     outputSamplingRate: int
     outputStereo: bool
     kana: str
