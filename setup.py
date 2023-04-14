@@ -21,7 +21,7 @@ setup(
     url="https://github.com/voicevox-client/python",
     project_urls={
         "Documentation": "https://voicevox-client.tuna2134.jp",
-        "Source": "https://github.com/tuna2134/voicevox-client",
+        "Source": "https://github.com/voicevox-client/python",
     },
     version=get_version(),
     long_description=long_description,
