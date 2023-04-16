@@ -1,6 +1,10 @@
 voicevox client for python.
 ===========================
 
+.. image:: https://readthedocs.org/projects/voicevox-client/badge/?version=latest
+    :target: https://voicevox-client.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 Unoffical API wrapper that you can use voicevox easy!
 
 Requirements
