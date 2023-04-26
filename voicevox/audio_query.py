@@ -92,17 +92,17 @@ class AudioQuery:
     ----------
     accent_phrases: dict
         アクセント句のリスト
-    speed_scale: int
+    speed_scale: float
         Speech speed
-    pitch_scale: int
+    pitch_scale: float
         Speech pitch
-    intonation_scale: int
+    intonation_scale: float
         Speech intonation
-    volume_scale: int
+    volume_scale: float
         Speech volume
-    pre_phoneme_length: int
+    pre_phoneme_length: float
         音声の前の無音時間
-    post_phoneme_length: int
+    post_phoneme_length: float
         音声の後の無音時間
     output_sampling_rate: int
         音声データの出力サンプリングレート
@@ -122,12 +122,12 @@ class AudioQuery:
             AccentPhrase(accent_phrase)
             for accent_phrase in payload["accent_phrases"]
         ]
-        self.speed_scale: int = payload["speedScale"]
-        self.pitch_scale: int = payload["pitchScale"]
-        self.intonation_scale: int = payload["intonationScale"]
-        self.volume_scale: int = payload["volumeScale"]
-        self.pre_phoneme_length: int = payload["prePhonemeLength"]
-        self.post_phoneme_length: int = payload["postPhonemeLength"]
+        self.speed_scale: float = payload["speedScale"]
+        self.pitch_scale: float = payload["pitchScale"]
+        self.intonation_scale: float = payload["intonationScale"]
+        self.volume_scale: float = payload["volumeScale"]
+        self.pre_phoneme_length: float = payload["prePhonemeLength"]
+        self.post_phoneme_length: float = payload["postPhonemeLength"]
         self.output_sampling_rate: int = payload["outputSamplingRate"]
         self.output_stereo: bool = payload["outputStereo"]
 
