@@ -1,6 +1,6 @@
 # voicevox - http
 
-from typing import List, Optional
+from typing import List, Optional, Dict
 
 import logging
 
@@ -98,5 +98,5 @@ class HttpClient:
     async def is_initialized_speaker(self, params: dict) -> bool:
         return await self.request("GET", "/is_initialized_speaker", params=params)
 
-
-
+    async def supported_devices(self, params: dict) -> Dict[str, bool]:
+        return await self.request("GET", "/supported_devices")
