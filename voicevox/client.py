@@ -9,6 +9,7 @@ from .audio_query import AudioQuery
 from .http import HttpClient
 from .speakers import Speaker
 from .speaker_info import SpeakerInfo
+from .supported_devices import SupportedDevices
 
 logger = logging.getLogger(__name__)
 
@@ -149,6 +150,12 @@ class Client:
             Contains additional information of the speaker.
         """
         return SpeakerInfo(await self.http.get_speaker_info(speaker_uuid, core_version)) 
+
+    async def check_devices(self, core_version: Optional[str] = None) -> SupportedDevices:
+        params = {}
+        if core_version:
+            params["core_version"] = core_version
+        return SupportedDevices(await self.http.supported_devices(params))
 
     async def multi_synthesis(
         self, audio_queries: List[AudioQuery], speaker: int,
