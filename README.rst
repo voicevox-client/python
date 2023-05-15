@@ -39,7 +39,7 @@ Example
                "こんにちは！", speaker=1
            )
            with open("voice.wav", "wb") as f:
-               f.write(await audio_query.synthesis())
+               f.write(await audio_query.synthesis(speaker=4))
 
 
    if __name__ == "__main__":
