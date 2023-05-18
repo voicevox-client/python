@@ -13,15 +13,15 @@ class Mora:
     Attributes
     ----------
     text: str
-        文字 // Text to synthesize
+        Text to synthesize
     consonant: str
-        子音の音素 //Start of consonants
+        Start of consonants
     consonant_length: int
-        子音の音長 // Pronounciation length of consonants
+        Pronounciation length of consonants
     vowel: str
-        母音の音素 //Start of vowels
+        Start of vowels
     vowel_length: int
-        母音の音長 //Length of vowels
+        Length of vowels
     pitch: int
         ピッチ //Pitch of the voice
     """
