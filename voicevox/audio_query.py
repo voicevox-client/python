@@ -13,17 +13,17 @@ class Mora:
     Attributes
     ----------
     text: str
-        文字
+        文字 // Text to synthesize
     consonant: str
-        子音の音素
+        子音の音素 //Start of consonants
     consonant_length: int
-        子音の音長
+        子音の音長 // Pronounciation length of consonants
     vowel: str
-        母音の音素
+        母音の音素 //Start of vowels
     vowel_length: int
-        母音の音長
+        母音の音長 //Length of vowels
     pitch: int
-        ピッチ
+        ピッチ //Pitch of the voice
     """
 
     def __init__(self, payload: MoraType):
