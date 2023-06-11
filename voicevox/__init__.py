@@ -15,4 +15,4 @@ __all__ = (
     "HttpException", "NotfoundError",
     "Speaker", "Style", "SupportedFeature"
 )
-__version__ = "0.2.0rc"
+__version__ = "0.2.0"
