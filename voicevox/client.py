@@ -77,6 +77,7 @@ class Client:
         if core_version is not None:
             params["core_version"] = core_version
         audio_query = await self.http.create_audio_query(params)
+        logger.debug(audio_query)
         return AudioQuery(self.http, audio_query)
 
     async def create_audio_query_from_preset(
