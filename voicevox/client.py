@@ -153,6 +153,19 @@ class Client:
         return SpeakerInfo(await self.http.get_speaker_info(speaker_uuid, core_version)) 
 
     async def check_devices(self, core_version: Optional[str] = None) -> SupportedDevices:
+        """
+        Check devices
+        
+        Parameters
+        ----------
+        core_version: str
+            voicevox core version
+        
+        Returns
+        -------
+        SupportedDevices
+            supported devices
+        """
         params = {}
         if core_version:
             params["core_version"] = core_version
