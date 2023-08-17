@@ -90,7 +90,7 @@ class Client:
         if core_version is not None:
             params["core_version"] = core_version
         audio_query = await self.http.create_audio_query_from_preset(params)
-        return AudioQuery(self, audio_query, preset_id)
+        return AudioQuery(self.http, audio_query)
 
     async def fetch_engine_version(self) -> str:
         """Fetch engine version
