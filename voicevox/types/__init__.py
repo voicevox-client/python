@@ -5,6 +5,10 @@ from .speakers import SpeakerType, StyleType, SupportedFeatureType
 
 
 __all__ = (
-    "AudioQueryType", "AccentPhraseType", "MoraType",
-    "SpeakerType", "StyleType", "SupportedFeatureType"
+    "AudioQueryType",
+    "AccentPhraseType",
+    "MoraType",
+    "SpeakerType",
+    "StyleType",
+    "SupportedFeatureType",
 )

@@ -15,9 +15,7 @@ class SupportedFeature:
     """
 
     def __init__(self, payload: SupportedFeatureType):
-        self.permitted_synthesis_morphing: str = payload[
-            "permitted_synthesis_morphing"
-        ]
+        self.permitted_synthesis_morphing: str = payload["permitted_synthesis_morphing"]
 
 
 class Style:
@@ -67,6 +65,4 @@ class Speaker:
         self.name: str = payload["name"]
         self.uuid: str = payload["speaker_uuid"]
         self.version: str = payload["version"]
-        self.styles: List[Style] = [
-            Style(style) for style in payload["styles"]
-        ]
+        self.styles: List[Style] = [Style(style) for style in payload["styles"]]

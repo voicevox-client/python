@@ -5,7 +5,7 @@ from typing import Dict
 
 class SupportedDevices:
     """Supported devices
-    
+
     Attributes
     ----------
     cpu : bool
@@ -15,6 +15,7 @@ class SupportedDevices:
     dml : bool
         Check directml support
     """
+
     def __init__(self, payload: Dict[str, bool]):
         self.__data = payload
 

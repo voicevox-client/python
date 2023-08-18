@@ -30,9 +30,9 @@ class Mora:
         self.text: str = payload["text"]
         self.consonant: str = payload["consonant"]
         self.consonant_length: int = payload["consonant_length"]
-        self.vowel: int = payload["vowel"]
+        self.vowel: str = payload["vowel"]
         self.vowel_length: int = payload["vowel_length"]
-        self.pitch: int = payload["pitch"]
+        self.pitch: float = payload["pitch"]
 
     def to_dict(self) -> dict:
         return {
@@ -41,7 +41,7 @@ class Mora:
             "consonant_length": self.consonant_length,
             "vowel": self.vowel,
             "vowel_length": self.vowel_length,
-            "pitch": self.pitch
+            "pitch": self.pitch,
         }
 
 
@@ -74,7 +74,7 @@ class AccentPhrase:
         payload = {
             "moras": [mora.to_dict() for mora in self.moras],
             "accent": self.accent,
-            "is_interrogative": self.is_interrogative
+            "is_interrogative": self.is_interrogative,
         }
         if self.pause_mora is not None:
             payload["pause_mora"] = self.pause_mora.to_dict()
@@ -112,15 +112,12 @@ class AudioQuery:
         [読み取り専用]AquesTalkライクな読み仮名。音声合成クエリとしては無視される
     """
 
-    def __init__(
-        self, http: HttpClient, payload: AudioQueryType
-    ):
+    def __init__(self, http: HttpClient, payload: AudioQueryType):
         self.http = http
         self.__data = payload
 
         self.accent_phrases: List[AccentPhrase] = [
-            AccentPhrase(accent_phrase)
-            for accent_phrase in payload["accent_phrases"]
+            AccentPhrase(accent_phrase) for accent_phrase in payload["accent_phrases"]
         ]
         self.speed_scale: float = payload["speedScale"]
         self.pitch_scale: float = payload["pitchScale"]
@@ -138,8 +135,7 @@ class AudioQuery:
     def to_dict(self) -> AudioQueryType:
         return {
             "accent_phrases": [
-                accent_phrase.to_dict()
-                for accent_phrase in self.accent_phrases
+                accent_phrase.to_dict() for accent_phrase in self.accent_phrases
             ],
             "speedScale": self.speed_scale,
             "pitchScale": self.pitch_scale,
@@ -149,16 +145,19 @@ class AudioQuery:
             "postPhonemeLength": self.post_phoneme_length,
             "outputSamplingRate": self.output_sampling_rate,
             "outputStereo": self.output_stereo,
-            "kana": self.kana
+            "kana": self.kana,
         }
 
     async def synthesis(
-        self, *, enable_interrogative_upspeak: bool = True,
-        speaker: int, core_version: Optional[str] = None
+        self,
+        *,
+        enable_interrogative_upspeak: bool = True,
+        speaker: int,
+        core_version: Optional[str] = None,
     ) -> bytes:
         params = {
             "speaker": speaker,
-            "enable_interrogative_upspeak": enable_interrogative_upspeak
+            "enable_interrogative_upspeak": enable_interrogative_upspeak,
         }
         if core_version is not None:
             params["core_version"] = core_version

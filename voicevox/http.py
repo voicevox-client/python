@@ -9,14 +9,13 @@ from httpx import AsyncClient
 
 from .errors import NotfoundError, HttpException
 from .types import AudioQueryType, SpeakerType
-from .types.speaker_info import SpeakerInfoType 
+from .types.speaker_info import SpeakerInfoType
 
 
 logger = logging.getLogger(__name__)
 
 
 class HttpClient:
-
     def __init__(self, base_url: str, timeout: Optional[int] = None):
         self.session = AsyncClient(base_url=base_url, timeout=timeout)
         logger.debug("Start session.")
@@ -28,9 +27,10 @@ class HttpClient:
     async def request(self, method: str, path: str, **kwargs) -> dict:
         logger.debug(f"Request: {method} Path: {path} kwargs: {kwargs}")
         response = await self.session.request(method, path, **kwargs)
-        logger.debug("StatusCode: {0.status_code} Response: {0.content}".format(response))
-        if response.status_code == 200 or \
-        response.status_code == 204:
+        logger.debug(
+            "StatusCode: {0.status_code} Response: {0.content}".format(response)
+        )
+        if response.status_code == 200 or response.status_code == 204:
             if response.headers.get("content-type") == "application/json":
                 return response.json()
             else:
@@ -41,42 +41,26 @@ class HttpClient:
             raise HttpException(response.json())
 
     async def synthesis(self, params: dict, payload: dict) -> bytes:
-        return await self.request(
-            "POST", "/synthesis", params=params,
-            json=payload
-        )
+        return await self.request("POST", "/synthesis", params=params, json=payload)
 
-    async def multi_synthesis(
-        self, params: dict, payload: List[dict]
-    ) -> bytes:
+    async def multi_synthesis(self, params: dict, payload: List[dict]) -> bytes:
         return await self.request(
-            "POST", "/multi_synthesis", params=params,
-            json=payload
+            "POST", "/multi_synthesis", params=params, json=payload
         )
 
     async def create_audio_query(self, params: dict) -> AudioQueryType:
-        return await self.request(
-            "POST", "/audio_query", params=params
-        )
+        return await self.request("POST", "/audio_query", params=params)
 
-    async def create_audio_query_from_preset(
-        self, params: dict
-    ) -> AudioQueryType:
-        return await self.request(
-            "POST", "/audio_query_from_preset", params=params
-        )
+    async def create_audio_query_from_preset(self, params: dict) -> AudioQueryType:
+        return await self.request("POST", "/audio_query_from_preset", params=params)
 
     async def get_version(self) -> str:
-        return await self.request(
-            "GET", "/version"
-        )
+        return await self.request("GET", "/version")
 
     async def get_core_versions(self) -> List[str]:
         return await self.request("GET", "/core_versions")
 
-    async def get_speakers(
-        self, core_version: Optional[str]
-    ) -> List[SpeakerType]:
+    async def get_speakers(self, core_version: Optional[str]) -> List[SpeakerType]:
         params = {}
         if core_version is not None:
             params["core_version"] = core_version
@@ -85,9 +69,7 @@ class HttpClient:
     async def get_speaker_info(
         self, speaker_uuid: str, core_version: Optional[str]
     ) -> SpeakerInfoType:
-        params = {
-            "speaker_uuid": speaker_uuid 
-        }
+        params = {"speaker_uuid": speaker_uuid}
         if core_version is not None:
             params["core_version"] = core_version
         return await self.request("GET", "/speaker_info", params=params)

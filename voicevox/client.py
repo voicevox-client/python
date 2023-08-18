@@ -32,7 +32,9 @@ class Client:
         You can customize timeout. If you use cpu mode, I recommend to use this.
     """
 
-    def __init__(self, base_url: str = "http://localhost:50021", timeout: Optional[int] = None):
+    def __init__(
+        self, base_url: str = "http://localhost:50021", timeout: Optional[int] = None
+    ):
         self.http = HttpClient(base_url=base_url, timeout=timeout)
 
     async def close(self) -> None:
@@ -70,10 +72,7 @@ class Client:
         AudioQuery
             Audio query, that run synthesis.
         """
-        params = {
-            "text": text,
-            "speaker": speaker
-        }
+        params = {"text": text, "speaker": speaker}
         if core_version is not None:
             params["core_version"] = core_version
         audio_query = await self.http.create_audio_query(params)
@@ -83,10 +82,7 @@ class Client:
     async def create_audio_query_from_preset(
         self, text: str, preset_id: int, *, core_version: Optional[str] = None
     ) -> AudioQuery:
-        params = {
-            "text": text,
-            "preset_id": preset_id
-        }
+        params = {"text": text, "preset_id": preset_id}
         if core_version is not None:
             params["core_version"] = core_version
         audio_query = await self.http.create_audio_query_from_preset(params)
@@ -116,9 +112,7 @@ class Client:
         """
         return await self.http.get_core_versions()
 
-    async def fetch_speakers(
-        self, core_version: Optional[str] = None
-    ) -> List[Speaker]:
+    async def fetch_speakers(self, core_version: Optional[str] = None) -> List[Speaker]:
         """Fetch speakers
 
         This can fetch voicevox speakers.
@@ -130,7 +124,7 @@ class Client:
         """
         speakers = await self.http.get_speakers(core_version)
         return [Speaker(speaker) for speaker in speakers]
-    
+
     async def fetch_speaker_info(
         self, speaker_uuid: str, core_version: Optional[str] = None
     ) -> SpeakerInfo:
@@ -150,17 +144,22 @@ class Client:
         SpeakerInfo
             Contains additional information of the speaker.
         """
-        return SpeakerInfo(await self.http.get_speaker_info(speaker_uuid, core_version)) 
+        return SpeakerInfo(await self.http.get_speaker_info(speaker_uuid, core_version))
 
-    async def check_devices(self, core_version: Optional[str] = None) -> SupportedDevices:
+    async def check_devices(
+        self, core_version: Optional[str] = None
+    ) -> SupportedDevices:
         params = {}
         if core_version:
             params["core_version"] = core_version
         return SupportedDevices(await self.http.supported_devices(params))
 
     async def multi_synthesis(
-        self, audio_queries: List[AudioQuery], speaker: int,
-        *, core_version: Optional[str] = None
+        self,
+        audio_queries: List[AudioQuery],
+        speaker: int,
+        *,
+        core_version: Optional[str] = None
     ) -> bytes:
         """Multi synthe
 
@@ -179,20 +178,18 @@ class Client:
         -------
         bytes
             Return zip file"""
-        params = {
-            "speaker": speaker
-        }
+        params = {"speaker": speaker}
         if core_version is not None:
             params["core_version"] = core_version
         return await self.http.multi_synthesis(
-            params, [
-                audio_query.to_dict()
-                for audio_query in audio_queries
-            ]
+            params, [audio_query.to_dict() for audio_query in audio_queries]
         )
 
     async def init_speaker(
-        self, speaker: int, *, skip_reinit: bool = False,
+        self,
+        speaker: int,
+        *,
+        skip_reinit: bool = False,
         core_version: Optional[str] = None
     ) -> None:
         """Initilize speaker
@@ -210,15 +207,14 @@ class Client:
             who have already been initialized
         core_version: Optional[str]
             core version"""
-        params = {
-            "speaker": speaker,
-            "skip_reinit": skip_reinit
-        }
+        params = {"speaker": speaker, "skip_reinit": skip_reinit}
         if core_version is not None:
             params["core_version"] = core_version
         await self.http.initialize_speaker(params)
 
-    async def check_inited_speaker(self, speaker: int, *, core_version: Optional[str] = None):
+    async def check_inited_speaker(
+        self, speaker: int, *, core_version: Optional[str] = None
+    ):
         """Check initialized speaker
 
         Returns whether the speaker with the specified speaker_id is initialized or not.
@@ -234,9 +230,7 @@ class Client:
         -------
         bool
             If initialized speaker, it return `True`."""
-        params = {
-            "speaker": speaker
-        }
+        params = {"speaker": speaker}
         if core_version is not None:
             params["core_version"] = core_version
         return await self.http.is_initialized_speaker(params)
