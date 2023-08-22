@@ -130,3 +130,6 @@ dmypy.json
 
 voice.wav
 audio.zip
+
+# vscode
+.vscode/*
