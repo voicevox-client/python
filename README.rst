@@ -42,5 +42,8 @@ Example
                f.write(await audio_query.synthesis(speaker=4))
 
 
-   if __name__ == "__main__":
-       asyncio.run(main())
+    if __name__ == "__main__":
+        ## already in asyncio (in a Jupyter notebook, for example)
+        # await main()
+        ## otherwise
+        asyncio.run(main()) 
