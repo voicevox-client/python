@@ -4,7 +4,7 @@ from typing import List, Optional, Dict
 
 import logging
 
-from httpx import AsyncClient
+from aiohttp import ClientSession
 
 
 from .errors import NotfoundError, HttpException
@@ -17,7 +17,8 @@ logger = logging.getLogger(__name__)
 
 class HttpClient:
     def __init__(self, base_url: str, timeout: Optional[int] = None):
-        self.session = AsyncClient(base_url=base_url, timeout=timeout)
+        self.http = ClientSession(timeout=timeout)
+        self.base_url = base_url
         logger.debug("Start session.")
 
     async def close(self) -> None:
@@ -26,7 +27,7 @@ class HttpClient:
 
     async def request(self, method: str, path: str, **kwargs) -> dict:
         logger.debug(f"Request: {method} Path: {path} kwargs: {kwargs}")
-        response = await self.session.request(method, path, **kwargs)
+        response = await self.http.request(method, path, **kwargs)
         logger.debug(
             "StatusCode: {0.status_code} Response: {0.content}".format(response)
         )

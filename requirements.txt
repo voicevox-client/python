@@ -1,2 +1,2 @@
-httpx>=0.23.2
+aiohttp
 typing-extensions>=4.3.0

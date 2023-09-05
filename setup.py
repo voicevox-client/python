@@ -7,7 +7,7 @@ def get_version():
         return re.search(r'__version__ = "([^"]+)"', f.read()).group(1)
 
 
-with open("README.rst", "r",  encoding='utf-8') as f:
+with open("README.rst", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 
@@ -29,17 +29,7 @@ setup(
     author="tuna2134",
     license="MIT",
     packages=["voicevox", "voicevox.types"],
-    package_data={
-        "voicevox": ["py.typed"]
-    },
+    package_data={"voicevox": ["py.typed"]},
     install_requires=requirements,
-    extras_require={
-        "tests": [
-            "pytest",
-            "pytest-asyncio"
-        ],
-        "docs": [
-            "pdoc3"
-        ]
-    }
+    extras_require={"tests": ["pytest", "pytest-asyncio"], "docs": ["pdoc3"]},
 )
