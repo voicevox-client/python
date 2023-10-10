@@ -52,7 +52,7 @@ class Client:
         await self.close()
 
     async def create_audio_query(
-        self, text: int, speaker: int, *, core_version: Optional[str] = None
+        self, text: str, speaker: int, *, core_version: Optional[str] = None
     ) -> AudioQuery:
         """Create audio query
 

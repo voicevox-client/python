@@ -39,11 +39,11 @@ Example
                "こんにちは！", speaker=1
            )
            with open("voice.wav", "wb") as f:
-               f.write(await audio_query.synthesis(speaker=4))
+               f.write(await audio_query.synthesis(speaker=1))
 
 
-    if __name__ == "__main__":
-        ## already in asyncio (in a Jupyter notebook, for example)
-        # await main()
-        ## otherwise
-        asyncio.run(main()) 
+   if __name__ == "__main__":
+       ## already in asyncio (in a Jupyter notebook, for example)
+       # await main()
+       ## otherwise
+       asyncio.run(main())
