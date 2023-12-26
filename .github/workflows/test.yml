@@ -10,6 +10,11 @@ jobs:
   tests:
     name: Test voicevox-client
     runs-on: ubuntu-latest
+    services:
+      voicevox:
+        image: voicevox/voicevox_engine:cpu-ubuntu20.04-latest
+        ports:
+        - 50021:50021
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
@@ -17,11 +22,6 @@ jobs:
         with:
           python-version: '3.10'
       - name: Install depend
-        run: pip3 install -U .[tests]
-      - name: Run voicevox-engine
-        run: |
-          docker pull voicevox/voicevox_engine:cpu-ubuntu20.04-latest
-          docker run -d --rm -p '127.0.0.1:50021:50021' voicevox/voicevox_engine:cpu-ubuntu20.04-latest
-          sleep 20
+        run: python -m pip install -U .[tests]
       - name: Run test
         run: pytest
