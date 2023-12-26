@@ -152,11 +152,11 @@ class AudioQuery:
         self,
         *,
         enable_interrogative_upspeak: bool = True,
-        speaker: int,
+        style_id: int,
         core_version: Optional[str] = None,
     ) -> bytes:
         params = {
-            "speaker": speaker,
+            "style_id": style_id,
             "enable_interrogative_upspeak": enable_interrogative_upspeak,
         }
         if core_version is not None:

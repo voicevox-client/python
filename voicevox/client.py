@@ -52,7 +52,7 @@ class Client:
         await self.close()
 
     async def create_audio_query(
-        self, text: str, speaker: int, *, core_version: Optional[str] = None
+        self, text: str, style_id: int, *, core_version: Optional[str] = None
     ) -> AudioQuery:
         """Create audio query
 
@@ -72,7 +72,7 @@ class Client:
         AudioQuery
             Audio query, that run synthesis.
         """
-        params = {"text": text, "speaker": speaker}
+        params = {"text": text, "style_id": style_id}
         if core_version is not None:
             params["core_version"] = core_version
         audio_query = await self.http.create_audio_query(params)
