@@ -62,7 +62,7 @@ class Client:
         ----------
         text: str
             Text message
-        speaker: int
+        style_id: int
             Speaker id
         core_version: str
             Core version
