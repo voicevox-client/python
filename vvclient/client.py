@@ -5,7 +5,13 @@ from typing import Optional
 from .http import HTTPClient
 
 
-class VoiceVoxClient:
+class Client:
+    """VOICEVOX Engine client
+    
+    Parameters
+    ----------
+    base_uri : str
+        Base URI of the VOICEVOX Engine"""
     def __init__(self, base_uri: str) -> None:
         self.http = HTTPClient(base_uri)
 
