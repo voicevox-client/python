@@ -16,6 +16,8 @@ logger = logging.getLogger(__name__)
 
 
 class HttpClient:
+    "VOICEVOX Engine HTTP Client."
+
     def __init__(self, base_url: str, timeout: Optional[int] = None):
         self.session = AsyncClient(base_url=base_url, timeout=timeout)
         logger.debug("Start session.")
