@@ -3,11 +3,11 @@ import re
 
 
 def get_version():
-    with open("voicevox/__init__.py", "r") as f:
+    with open("vvclient/__init__.py", "r") as f:
         return re.search(r'__version__ = "([^"]+)"', f.read()).group(1)
 
 
-with open("README.rst", "r",  encoding='utf-8') as f:
+with open("README.rst", "r", encoding="utf-8") as f:
     long_description = f.read()
 
 
@@ -28,18 +28,8 @@ setup(
     long_description_content_type="text/x-rst",
     author="tuna2134",
     license="MIT",
-    packages=["voicevox", "voicevox.types"],
-    package_data={
-        "voicevox": ["py.typed"]
-    },
+    packages=["vvclient", "vvclient.types"],
+    package_data={"voicevox": ["py.typed"]},
     install_requires=requirements,
-    extras_require={
-        "tests": [
-            "pytest",
-            "pytest-asyncio"
-        ],
-        "docs": [
-            "pdoc3"
-        ]
-    }
+    extras_require={"tests": ["pytest", "pytest-asyncio"], "docs": ["pdoc3"]},
 )
