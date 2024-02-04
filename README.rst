@@ -36,10 +36,10 @@ Example
    async def main():
        async with Client() as client:
            audio_query = await client.create_audio_query(
-               "こんにちは！", style_id=1
+               "こんにちは！", speaker=1
            )
            with open("voice.wav", "wb") as f:
-               f.write(await audio_query.synthesis(style_id=1))
+               f.write(await audio_query.synthesis(speaker=1))
 
 
    if __name__ == "__main__":
