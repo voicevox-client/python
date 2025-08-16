@@ -56,6 +56,8 @@ class Client:
         params = {"text": text, "speaker": speaker}
         if core_version:
             params["core_version"] = core_version
+        if not enable_katakana_english:
+            params["enable_katakana_english"] = "false"
         return AudioQuery(self.http, await self.http.create_audio_query(params))
 
     async def fetch_engine_version(self) -> str:

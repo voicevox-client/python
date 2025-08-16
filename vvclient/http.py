@@ -6,6 +6,7 @@ from aiohttp import ClientSession
 
 from .errors import NotFoundError, HTTPException
 from .types import AudioQueryType
+from .types.sing import AudioQuery as SingAudioQueryType, RequestPostAudioQuery
 
 
 class Route:
@@ -45,6 +46,11 @@ class HTTPClient:
         self, params: Dict[str, Union[str, int]]
     ) -> AudioQueryType:
         return await self.request(Route("POST", "/audio_query"), params=params)
+
+    async def create_sing_audio_query(
+        self, params: Dict[str, Union[str, int]], payload: RequestPostAudioQuery
+    ) -> SingAudioQueryType:
+        return await self.request(Route("POST", "/sing_audio_query"), params=params)
 
     async def synthesis(
         self, params: Dict[str, Union[str, int]], audio_query: AudioQueryType
