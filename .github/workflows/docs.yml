@@ -18,7 +18,7 @@ jobs:
       - name: Build documentation
         run: |
           pip3 install -U .[docs]
-          pdoc --html --config show_source_code=False --force voicevox
+          pdoc --html --config show_source_code=False --force vvclient
       
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
