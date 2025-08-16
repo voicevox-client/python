@@ -2,5 +2,5 @@
 from .client import Client
 
 
-__version__ = "1.0.0a"
+__version__ = "1.1.0"
 __all__ = ["Client"]
