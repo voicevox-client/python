@@ -24,7 +24,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         id: deployment
         with:
-          path: ./html/voicevox
+          path: ./html/vvclient
   deploy:
     environment:
       name: github-pages
