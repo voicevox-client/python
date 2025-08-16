@@ -8,11 +8,12 @@ from .audio_query import AudioQuery
 
 class Client:
     """VOICEVOX Engine client
-    
+
     Parameters
     ----------
     base_uri : str
         Base URI of the VOICEVOX Engine"""
+
     def __init__(self, base_uri: str = "http://localhost:50021") -> None:
         self.http = HTTPClient(base_uri)
 
@@ -26,7 +27,12 @@ class Client:
         await self.http.close()
 
     async def create_audio_query(
-        self, text: str, speaker: int, *, core_version: Optional[str] = None
+        self,
+        text: str,
+        speaker: int,
+        *,
+        core_version: Optional[str] = None,
+        enable_katakana_english: bool = True
     ) -> AudioQuery:
         """
         Create audio query
@@ -39,6 +45,8 @@ class Client:
             speaker type
         core_version: Optional[str]
             voicevox_core version
+        enable_katakana_english: bool
+            Enable Katakana English (Default is True)
 
         Returns
         -------
@@ -72,7 +80,13 @@ class Client:
         """
         return await self.http.core_versions()
 
-    async def init_speaker(self, speaker: int, *, skip_reinit: bool = False, core_version: Optional[str] = None) -> None:
+    async def init_speaker(
+        self,
+        speaker: int,
+        *,
+        skip_reinit: bool = False,
+        core_version: Optional[str] = None
+    ) -> None:
         """
         Initialize speaker
 
@@ -85,19 +99,17 @@ class Client:
         core_version: Optional[str]
             VOICEVOX Core version
         """
-        params = {
-            "speaker": speaker
-        }
+        params = {"speaker": speaker}
         if skip_reinit:
             params["skip_reinit"] = "true"
         if core_version:
             params["core_version"] = core_version
         await self.http.initialize_speaker(params)
 
-    async def is_inited_speaker(self, speaker: int, *, core_version: Optional[str] = None) -> bool:
-        params = {
-            "speaker": speaker
-        }
+    async def is_inited_speaker(
+        self, speaker: int, *, core_version: Optional[str] = None
+    ) -> bool:
+        params = {"speaker": speaker}
         if core_version:
             params["core_version"] = core_version
         return await self.http.is_initialized_speaker(params)

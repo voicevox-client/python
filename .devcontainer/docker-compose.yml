@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../..:/workspaces:cached
+    command: sleep infinity
+    networks:
+      - main
+
+  voicevox:
+    image: voicevox/voicevox_engine:cpu-latest
+    networks:
+      - main
+
+networks:
+  main:

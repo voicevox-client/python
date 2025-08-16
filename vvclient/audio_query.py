@@ -20,7 +20,9 @@ class AudioQuery:
     ) -> bytes:
         params = {
             "speaker": speaker,
-            "enable_interrogative_upspeak": "true" if enable_interrogative_upspeak else "false",
+            "enable_interrogative_upspeak": (
+                "true" if enable_interrogative_upspeak else "false"
+            ),
         }
         if core_version:
             params["core_version"] = core_version
