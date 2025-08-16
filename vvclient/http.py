@@ -6,7 +6,7 @@ from aiohttp import ClientSession
 
 from .errors import NotFoundError, HTTPException
 from .types import AudioQueryType
-from .types.sing import AudioQuery as SingAudioQueryType, RequestPostAudioQuery
+from .types import SingAudioQuery as SingAudioQueryType, RequestPostAudioQuery
 
 
 class Route:

@@ -2,6 +2,7 @@
 
 from .audio_query import AudioQueryType, AccentPhraseType, MoraType
 from .speakers import SpeakerType, StyleType, SupportedFeatureType
+from .sing import *
 
 
 __all__ = (
@@ -11,4 +12,8 @@ __all__ = (
     "SpeakerType",
     "StyleType",
     "SupportedFeatureType",
+    "SingAudioQuery",
+    "Phoneme",
+    "RequestPostAudioQuery",
+    "Note",
 )

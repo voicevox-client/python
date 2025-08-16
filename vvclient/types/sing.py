@@ -18,7 +18,7 @@ class Phoneme(TypedDict):
     note_id: str
 
 
-class AudioQuery(TypedDict):
+class SingAudioQuery(TypedDict):
     f0: List[int]
     volume: List[int]
     phonemes: List[Phoneme]
