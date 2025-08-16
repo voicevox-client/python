@@ -3,7 +3,7 @@ name: Deploy document
 on:
   push:
     branches:
-      - v0.4.x
+      - rewrite
     
 jobs:
   build:
